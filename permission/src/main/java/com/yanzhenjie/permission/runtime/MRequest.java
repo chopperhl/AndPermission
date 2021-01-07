@@ -20,7 +20,7 @@ import androidx.annotation.NonNull;
 import com.yanzhenjie.permission.RequestExecutor;
 import com.yanzhenjie.permission.bridge.BridgeRequest;
 import com.yanzhenjie.permission.bridge.RequestManager;
-import com.yanzhenjie.permission.checker.DoubleChecker;
+
 import com.yanzhenjie.permission.checker.PermissionChecker;
 import com.yanzhenjie.permission.checker.StandardChecker;
 import com.yanzhenjie.permission.source.Source;
@@ -36,7 +36,6 @@ import java.util.List;
 class MRequest extends BaseRequest implements RequestExecutor, BridgeRequest.Callback {
 
     private static final PermissionChecker STANDARD_CHECKER = new StandardChecker();
-    private static final PermissionChecker DOUBLE_CHECKER = new DoubleChecker();
 
     private Source mSource;
 
@@ -98,10 +97,10 @@ class MRequest extends BaseRequest implements RequestExecutor, BridgeRequest.Cal
 
     @Override
     public void onCallback() {
-        new TaskExecutor<List<String>>(mSource.getContext()) {
+        new TaskExecutor<List<String>>() {
             @Override
             protected List<String> doInBackground(Void... voids) {
-                return getDeniedPermissions(DOUBLE_CHECKER, mSource, mPermissions);
+                return getDeniedPermissions(STANDARD_CHECKER, mSource, mPermissions);
             }
 
             @Override

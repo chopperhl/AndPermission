@@ -24,8 +24,9 @@ import android.text.TextUtils;
 
 import androidx.fragment.app.Fragment;
 
-import com.yanzhenjie.permission.checker.DoubleChecker;
+
 import com.yanzhenjie.permission.checker.PermissionChecker;
+import com.yanzhenjie.permission.checker.StandardChecker;
 import com.yanzhenjie.permission.option.Option;
 import com.yanzhenjie.permission.source.ActivitySource;
 import com.yanzhenjie.permission.source.ContextSource;
@@ -202,7 +203,7 @@ public class AndPermission {
     /**
      * Classic permission checker.
      */
-    private static final PermissionChecker PERMISSION_CHECKER = new DoubleChecker();
+    private static final PermissionChecker PERMISSION_CHECKER = new StandardChecker();
 
     /**
      * Judgment already has the target permission.
